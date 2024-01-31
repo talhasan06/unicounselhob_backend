@@ -8,4 +8,4 @@ class Blog(models.Model):
     image = models.ImageField(upload_to='blog/images/')
 
     def __str__(self):
-        return self.name
+        return self.id

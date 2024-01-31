@@ -79,14 +79,6 @@ class UserLogoutView(APIView):
         logout(request)
         return redirect('login')
     
-class UserListViewSet(viewsets.ReadOnlyModelViewSet):
+class UserListViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-class UserDetailViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-    def get_queryset(self):
-        pk = self.kwargs.get('pk')
-        return User.objects.filter(pk=pk)
