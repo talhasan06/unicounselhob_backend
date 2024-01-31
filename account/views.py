@@ -11,6 +11,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from rest_framework.authtoken.models import Token
+from .serializers import UserSerializer
 
 #for sending email
 from django.core.mail import EmailMultiAlternatives
@@ -77,3 +78,15 @@ class UserLogoutView(APIView):
         request.user.auth_token.delete()
         logout(request)
         return redirect('login')
+    
+class UserListViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class UserDetailViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        pk = self.kwargs.get('pk')
+        return User.objects.filter(pk=pk)

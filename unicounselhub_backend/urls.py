@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-
+from account.views import UserListViewSet,UserDetailViewSet
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/',include('blog.urls')),
@@ -26,6 +26,8 @@ urlpatterns = [
     path('student/',include('student.urls')),
     path('teacher/',include('teacher.urls')),
     path('account/',include('account.urls')),
+    path('users/', UserListViewSet.as_view({'get': 'list'}), name='user-list'),
+    path('users/<int:pk>/', UserDetailViewSet.as_view({'get': 'retrieve'}), name='user-detail'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
