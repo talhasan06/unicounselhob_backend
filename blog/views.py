@@ -7,3 +7,7 @@ from . import serializers
 class BlogViewset(viewsets.ModelViewSet):
     queryset = models.Blog.objects.all()
     serializer_class = serializers.BlogSerializers
+    
+class BlogDetailView(viewsets.ModelViewSet):
+    queryset = models.Blog.objects.all()
+    serializer_class = serializers.BlogSerializers

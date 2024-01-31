@@ -7,5 +7,6 @@ router = DefaultRouter()
 router.register('',views.BlogViewset)
 
 urlpatterns = [
-    path('',include(router.urls))
+    path('',include(router.urls)),
+    path('<int:pk>/', views.BlogDetailView.as_view({'get': 'blog_details'}))
 ]
