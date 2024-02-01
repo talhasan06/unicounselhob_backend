@@ -16,6 +16,7 @@ class Teacher(models.Model):
     available_time = models.ManyToManyField(AvailableTime)
     mobile_no = models.CharField(max_length=12)
 
+    @property
     def full_name(self):
         return self.user.get_full_name()
 
