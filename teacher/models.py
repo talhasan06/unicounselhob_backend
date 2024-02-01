@@ -18,7 +18,7 @@ class Teacher(models.Model):
 
     @property
     def full_name(self):
-        return self.user.get_full_name()
+        return f"{self.user.first_name} {self.user.last_name}"
 
     def __str__(self):
-        return f"{self.user.first_name} {self.user.last_name}"
+        return self.full_name
