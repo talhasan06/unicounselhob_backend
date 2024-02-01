@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-&926_1&_#mv-xy-xz#8yo4^q07w+7@$1+6s0&g@4pz)89hrs4m
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
+CSRF_TRUSTED_ORIGINS = ['https://*.unicounselhub-backend.onrender.com/','https://*.127.0.0.1']
 
 # Application definition
 
@@ -47,9 +47,12 @@ INSTALLED_APPS = [
     'schedule',
     'rest_framework',
     'rest_framework.authtoken',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -58,7 +61,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5500",
+]
+CORS_ALLOW_METHODS = (
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+)
 ROOT_URLCONF = 'unicounselhub_backend.urls'
 
 TEMPLATES = [
